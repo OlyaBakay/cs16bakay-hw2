@@ -30,3 +30,4 @@ public interface ImmutableList {
     @Override
     String toString(); //повертає рядок, де через кому відображаютсься елементи колекції
 }
+
