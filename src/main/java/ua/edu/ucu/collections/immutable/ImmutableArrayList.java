@@ -75,7 +75,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList remove(int index) {
+    public ImmutableArrayList remove(int index) {
         if (index > size()) {
             throw new IndexOutOfBoundsException();
         }
@@ -125,7 +125,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList clear() {
+    public ImmutableArrayList clear() {
         return new ImmutableArrayList(new Object[]{null});
     }
 
@@ -137,13 +137,6 @@ public class ImmutableArrayList implements ImmutableList {
     @Override
     public Object[] toArray() {
         return Arrays.copyOf(my_array, size());
-        /*
-        Object[] finalArray = new Object[this.size()];
-        for (int i = 0; i < this.size(); i ++) {
-            finalArray[i] = this.array[i];
-        }
-        return finalArray;
-         */
     }
 
     public String toString() {
