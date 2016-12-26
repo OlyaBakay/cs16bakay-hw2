@@ -2,9 +2,43 @@ package ua.edu.ucu.collections.immutable;
 
 public class ImmutableLinkedList implements ImmutableList {
 
+    private Node head;
+    private int len;
+
+
+    ImmutableLinkedList(Node head){
+        this.head = head;
+        Node currentNode = head.getNextNode();
+        while (currentNode != null){
+            len++;
+            currentNode = currentNode.getNextNode();
+        }
+    }
+
+    ImmutableLinkedList(){
+        this.head = null;
+        this.len = 0;
+    }
+
     @Override
     public ImmutableLinkedList add(Object e) {
-        return null;
+        Node newNode;
+
+        if (head == null) {
+            newNode = head.clone();
+            newNode = new Node(e);
+        }
+        else {
+            newNode = head.clone();
+            Node newCurr = newNode;
+
+            while (newCurr.getNextNode() != null){
+                newCurr = newCurr.getNextNode();
+            }
+            newCurr.setNextNode(new Node(e));
+
+        }
+        return new ImmutableLinkedList(newNode);
     }
 
     @Override
@@ -44,21 +78,38 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public int size() {
-        return 0;
+        int len = 0;
+        Node currentNode = this.head;
+        while (currentNode != null){
+            len++;
+            currentNode = currentNode.getNextNode();
+        }
+        return len;
     }
 
     @Override
     public ImmutableLinkedList clear() {
-        return null;
+        return new ImmutableLinkedList();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return head == null && size() == 0;
     }
 
     @Override
     public Object[] toArray() {
         return new Object[0];
     }
+
+    public String toString(){
+        String asStr = "";
+        Node currentNode = this.head;
+        while (currentNode != null){
+            asStr += currentNode + ", ";
+        }
+        return asStr;
+    }
+
+
 }
